@@ -1,0 +1,33 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block title %}Filter{% endblock title %}
+{% block main-content %}
+<div class="container my-5" style="min-height: 48.5pc;">
+    <div class="row d-flex flex-wrap">
+        <div class="col-sm-3">
+            <li class="nav-item mx-2" style="list-style: none;">
+                <a href="{% url 'filter' 'laptops' %}" class="nav-link text-black btn">Laptop</a>
+                <a href="{% url 'filter' 'mobiles' %}" class="nav-link text-black btn" >Mobile</a>
+                <a href="{% url 'filter' 'topweare' %}" class="nav-link text-black btn">Top Wear</a>
+                <a href="{% url 'filter' 'bottomwear' %}" class="nav-link text-black btn" >Bottom Wear</a>
+            </li>
+        </div>
+        <div class="col-sm-8">
+            <div style="display: flex; margin: 2px;">
+                {% for product in products %}
+                    <a id='product_cart' class='m-2' href="{% url 'product-detail' product.id %}">
+                        <div class="card" style="width: 18rem;">
+                            <img src="{{product.image.url}}" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title">{{product.name|slice:":20"}}..</h5>
+                                <p class="card-text">{{product.description|slice:":50"}}..</p>
+                                <a href="#" class="btn btn-primary">add to cart</a>
+                            </div>
+                        </div>
+                    </a>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock main-content %}

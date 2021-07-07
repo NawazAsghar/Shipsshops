@@ -1,0 +1,26 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% load widget_tweaks %}
+{% block title %}Login{% endblock title %}
+{% block main-content %}
+<div class="container">
+ <div class="row my-3">
+  <div class="col-sm-6 offset-sm-3">
+   <h3>Login</h3>
+   <hr>
+   <form action="" method="post" novalidate class="shadow p-5"> {% csrf_token %}
+     {% for input in form %}
+          {{input.label_tag}}
+          {{input|add_class:'form-control'}}
+          {{input.errors}}
+     {% endfor %}
+    <small><a href="#">Forgot Password ?</a></small> <br>
+    <input type="submit" class="btn btn-primary mt-4" value="Login">
+    <br>
+    <div class="text-center text-primary fw-bold"><small>New to ShoppinglyX ? <a href="{% url 'customerregistration' %}"
+       class="text-danger">Create an Account</a> </small></div>
+   </form>
+  </div>
+ </div>
+</div>
+{% endblock main-content %}
