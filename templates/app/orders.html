@@ -2,7 +2,7 @@
 {% load static %}
 {% block title %}Buy Now{% endblock title %}
 {% block main-content %}
-<div class="container my-5">
+<div class="container my-5" style="min-height: 48.5pc;>
  <div class="row">
  <h3>Welcome {{request.user}}</h3>
   <div class="col-sm-2 border-end">
@@ -11,50 +11,54 @@
    </ul>
   </div>
   <div class="col-sm-9 offset-sm-1">
-    {% for p in products %}
-    <div class="row shadow-sm mb-3">
-    <div class="col-sm-2">
-        <img src="{{p.product.image.url}}" alt="" class="img-fluid" height='150', width='150'>
-    </div>
-    <div class="col-sm-7">
-        <p>Product: {{p.product.name}}</p>
-        <p>Product: {{p.quan}}</p>
-        <p>Product: {{p.total_cost}}</p>
-    </div>
+    {% if products %}
+        {% for p in products %}
+            <div class="row shadow-sm mb-3 mt-5">
+            <div class="col-sm-2">
+                <img src="{{p.product.image.url}}" alt="" class="img-fluid" height='150', width='150'>
+            </div>
+            <div class="col-sm-7">
+                <p>Product: {{p.product.name}}</p>
+                <p>Product: {{p.quan}}</p>
+                <p>Product: {{p.total_cost}}</p>
+            </div>
 
-    <div class="col-sm-3 fw-bold">
-        <p>Order Status: {{p.status}}</p>
-        
-        {% if p.status == 'Accepted' %}
-            <div class="progress">
-            <div class="progress-bar" role='progressbar' style="width:20%" aria-valuenow='20' aria-valuemin='0' aria-valuemac='100' ></div>
+            <div class="col-sm-3 fw-bold">
+                <p>Order Status: {{p.status}}</p>
+                
+                {% if p.status == 'Accepted' %}
+                    <div class="progress">
+                    <div class="progress-bar" role='progressbar' style="width:20%" aria-valuenow='20' aria-valuemin='0' aria-valuemac='100' ></div>
+                    </div>
+                {% endif %}
+                    
+                
+                {% if p.status == 'Packed' %}
+                    <div class="progress">
+                    <div class="progress-bar bg-info" role='progressbar' style="width:40%" aria-valuenow='40' aria-valuemin='0' aria-valuemac='100' ></div>
+                    </div>
+                {% endif %}
+                    
+                
+                {% if p.status == 'OnTheWay' %}
+                    <div class="progress">
+                    <div class="progress-bar bg-warning" role='progressbar' style="width:70%" aria-valuenow='70' aria-valuemin='0' aria-valuemac='100' ></div>
+                    </div>
+                {% endif %}
+                    
+                
+                {% if p.status == 'Delivered' %}
+                    <div class="progress">
+                    <div class="progress-bar bg-success" role='progressbar' style="width:100%" aria-valuenow='100' aria-valuemin='0' aria-valuemac='100' ></div>
+                    </div>
+                {% endif %}     
             </div>
-        {% endif %}
-            
-        
-        {% if p.status == 'Packed' %}
-            <div class="progress">
-            <div class="progress-bar bg-info" role='progressbar' style="width:40%" aria-valuenow='40' aria-valuemin='0' aria-valuemac='100' ></div>
             </div>
-        {% endif %}
-            
-        
-        {% if op.status == 'OnTheWay' %}
-            <div class="progress">
-            <div class="progress-bar bg-warning" role='progressbar' style="width:70%" aria-valuenow='70' aria-valuemin='0' aria-valuemac='100' ></div>
-            </div>
-        {% endif %}
-            
-        
-        {% if p.status == 'Delivered' %}
-            <div class="progress">
-            <div class="progress-bar bg-success" role='progressbar' style="width:100%" aria-valuenow='100' aria-valuemin='0' aria-valuemac='100' ></div>
-            </div>
-        {% endif %}
-            
-    </div>
-   </div>
-    {% endfor %}
+        {% endfor %}
+    {% else %}
+        <div class="text-center fs-2">No prodcut available</div>
+        <div class="text-center mt-3 fs-5"> <a href="/">Buy some product</a></div>
+    {% endif %}
   </div>
  </div>
 </div>

@@ -2,9 +2,10 @@
 {% load static %}
 {% block title %}Search{% endblock title %}
 {% block main-content %}
-<div class="container my-5">
+<div class="container my-5" style="min-height: 48.5pc;">
     <div class="row">
         <div class="col-sm-12">
+            <p>Your search result for: <b class='fs-5 m-2' >{{query}}</b> </p>
             <div style="display: flex; margin: 2px; flex-wrap: wrap;">
                 {% for product in products %}
                     <a id='product_cart' class='m-2' href="{% url 'product-detail' product.id %}">

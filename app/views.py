@@ -233,6 +233,6 @@ def search(request):
             if query in p.category.lower() or query in p.name.lower() or query in p.description.lower():
                 products.append(p)
         print(products)
-        return render(request,"app/search.html",{"products":products})
+        return render(request,"app/search.html",{"products":products, "query":query})
     else:
         return HttpResponseRedirect('/')
