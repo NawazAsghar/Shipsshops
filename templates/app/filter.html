@@ -17,7 +17,7 @@
                 {% for product in products %}
                     <a id='product_cart' class='m-2' href="{% url 'product-detail' product.id %}">
                         <div class="card" style="width: 18rem;">
-                            <img src="{{product.image.url}}" class="card-img-top" alt="...">
+                            <img src="{{product.image.url}}" class="card-img-top" style="max-height: 17pc; min-height: 17pc;" alt="...">
                             <div class="card-body">
                                 <h5 class="card-title">{{product.name|slice:":20"}}..</h5>
                                 <p class="card-text">{{product.description|slice:":50"}}..</p>
